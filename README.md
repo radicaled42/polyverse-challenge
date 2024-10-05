@@ -132,24 +132,24 @@ C---P-----P-----P-----P-------
 
 ## Flask Routes
 
-**/show**
-- Returns the actual candidate map
-  - method: GET
+**`/show`**
+- Returns the current candidate map.
+  - **Method**: GET
 
-**/clean**
-- Remove all the elements from the API map
-  - method: POST
+**`/clean`**
+- Removes all elements from the API map.
+  - **Method**: POST
 
-**/write**
+**`/write`**
 - Writes an element into the API map.
-  - method: POST
-  - arguments: start, end (optional), type, color/destination.
-    - start: the position to delete or the point to start a line.
-    - end: (optional) it the position where the lines end.
-    - type: its the type of element to create
-    - color/destination (optional) 
+  - **Method**: POST
+  - **Arguments**: `start`, `end` (optional), `type`, `color/direction` (optional):
+    - **start**: The starting position to write or the point to start a line.
+    - **end**: (Optional) The end position where the line ends.
+    - **type**: The type of element to create.
+    - **color/direction**: (Optional) Color for Soloons or direction for Comeths.
 
-Write single element
+**Example for writing a single element**:
 ```json
 {
     "start": "(1,1)",
@@ -160,7 +160,7 @@ Write single element
 }
 ```
 
-Write multiple elements
+**Example for writing a multiple element**:
 ```json
 {
     "start": "(1,1)",
@@ -172,15 +172,15 @@ Write multiple elements
 }
 ```
 
-**/delete**
+**`/delet`e**
 - Deletes an element into the API map.
-  - method: DELETE
-  - arguments: start, end (optional), type.
-    - start: the position to delete or the point to start a line.
-    - end: (optional) it the position where the lines end.
-    - type: its the type of element to delete
+  - **Method**: DELETE
+  - **Arguments**: `start`, `end` (optional), `type`.
+    - **start**: The starting position to delete or the point to start a line.
+    - **end**: (Optional) it the position where the lines end.
+    - **type**: Its the type of element to delete
 
-Delete single element
+**Example for deleting a single element**:
 ```json
 {
     "start": "(1,1)",
@@ -190,7 +190,7 @@ Delete single element
 }
 ```
 
-Delete multiple elements
+**Example for deleting a multiple element**:
 ```json
 {
     "start": "(1,1)",
@@ -201,12 +201,12 @@ Delete multiple elements
 }
 ```
 
-**/duplicate**
-- It duplicates a map
-  - method: POST
-  - arguments: url (optional)
+**`/duplicate`**
+- Duplicates a map, optionally using an external URL.
+  - **Method**: POST
+  - **Arguments**: url (optional)
 
-Duplicate URL Payload
+**Example for duplicating with a custom URL:**:
 ```json
 {
     "url": "https://something.something.com"
