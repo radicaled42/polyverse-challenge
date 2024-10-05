@@ -135,7 +135,7 @@ class Polyverse:
 
     # Write an element on the local Polyverse
     def write_local_map(self, element_data):
-        if self.__verify_position(element_data, 'WRITE'):
+        if self.__verify_position(element_data):
             payload = element_data['payload']
             payload['action'] = 'WRITE'
             self.map[int(element_data['row'])][int(element_data['column'])] = payload
@@ -266,9 +266,7 @@ class Polyverse:
     def __verify_position(self, element_data, method):
 
         payload = element_data["payload"]
-        # Check if this is a delete method
-        if method == 'DELETE':
-            return True
+
         match payload["type"]:
             case 0:
                 return True
