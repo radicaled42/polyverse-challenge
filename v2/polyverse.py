@@ -277,7 +277,7 @@ class Polyverse:
                         
                         # Check if the element is not None and matches the required condition
                         if element is not None:
-                            if element["type"] == 0:
+                            if element["type"] == 0 and "color" in payload:
                                 return True
                 # If no matching element is found
                 return False      
