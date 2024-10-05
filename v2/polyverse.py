@@ -144,17 +144,17 @@ class Polyverse:
     
     # Delete an element from the local Polyverse
     def delete_local_map(self, element_data):
-        if self.__verify_position(element_data, 'DELETE'):
-            payload = element_data['payload']
-            payload['action'] = 'DELETE'
-            map_element = self.map[int(element_data['row'])][int(element_data['column'])]
-            if map_element is not None and map_element['action'] == 'NONE':
-                self.map[int(element_data['row'])][int(element_data['column'])] = payload
-            elif map_element is not None and map_element['action'] == 'WRITE':
-                self.map[int(element_data['row'])][int(element_data['column'])] = None
-        else:
-            print(f'There was a problem writing this element {element_data}')
-        return
+
+        payload = element_data['payload']
+        payload['action'] = 'DELETE'
+        
+        map_element = self.map[int(element_data['row'])][int(element_data['column'])]
+        
+        if map_element is not None and map_element['action'] == 'NONE':
+            self.map[int(element_data['row'])][int(element_data['column'])] = payload
+        elif map_element is not None and map_element['action'] == 'WRITE':
+            self.map[int(element_data['row'])][int(element_data['column'])] = None
+        return 1
     
     # Merge Local into External Polyverse (Local --> External)
     def merge_map(self):
