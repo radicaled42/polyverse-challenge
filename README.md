@@ -88,46 +88,47 @@ C---P-----P-----P-----P-------
 ## Methods
 
 **Private Methods**
-- __reset_map: 
-  - reset the local map in **self.map**, doesn't need any input
-- __api_call
-  - Generates the api call to the server. Needs **method**, **url**, **headers**, **payload**
-    - method: GET/POST/DELETE
-    - url: API url
-    - headers: this is a dictionary and can be empty
-    - payload: this is a dictionary and can be empty
-- __write_element_polyverse
-  - Writes an element into the API map, it requires **element_data**, **binary_api**
-    - element_data: All the arguments to create an element (row, column, candidateID, direction/color)
-    - binary_api: the number of the element to create
-- __clean_element_poliverse
-  - Deletes an element into the API map, it requires **element_data**, **binary_api**
-    - element_data: All the arguments to create an element (row, column, candidateID)
-    - binary_api: the number of the element to create
-- __verify_position
-  - Check if its possible to write an element on the designated position. It requires **element_data**
-  - element_data: All the arguments to create an element (row, column, candidateID, direction/color)
+- `__reset_map`
+  - Resets the local map in **self.map**. No input required.
+- `__api_call`
+  - Makes an API call to the server. Requires **method**, **url**, **headers**, and **payload**:
+    - **method**: HTTP method (GET/POST/DELETE).
+    - **url**: The API URL.
+    - **headers**: A dictionary of HTTP headers (can be empty).
+    - **payload**: A dictionary containing the data to send (can be empty).
+- `__write_element_polyverse`
+  - Writes an element into the API map. Requires **element_data** and **binary_api**:
+    - **element_data**: Dictionary containing the row, column, candidateID, and direction/color.
+    - **binary_api**: The type of element to create (0 for Polyanet, 1 for Soloon, 2 for Cometh).
+- `__clean_element_polyverse`
+  - Deletes an element from the API map. Requires **element_data** and **binary_api**:
+    - **element_data**: Dictionary containing the row, column, and candidateID.
+    - **binary_api**: The type of element to delete.
+- `__verify_position`
+  - Verifies if it's possible to write an element at the given position. Requires **element_data**:
+    - **element_data**: Dictionary containing row, column, candidateID, and direction/color.
 
 **Public Methods**
-- get_polyverse_map
-  - It makes an API call to retrieve the map of the candidate.
-- show_local_polyverse
-  - It makes a representation of the map in 2D with single characters
-- clean_polyverse
-  - Remove all the elements from the API map
-- write_local_map
-  - Writes the element_data information in the local map. It requires **element_data**
-    - element_data: All the arguments to create an element (row, column, candidateID, type, direction/color)
-- delete_local_map
-  - Deletes the element_data information in the local map. It requires **element_data**
-  - element_data: All the arguments to delete an element (row, column, candidateID, type)
-- merge_map
-  - Merges local map into external map (Local --> External)
-- local_map_payload
-  - Given the row, column and element_data, this method will create the payload to write on the local map.
-  - payload: {row, column, payload: {type, direction/color}}
-- duplicate_polyverse
-  - It duplicates a map. It can take an external url or by default it will use the candidate goal map. The url is not a require argument
+- `get_polyverse_map`
+  - Makes an API call to retrieve the map of the candidate.
+- `show_local_polyverse`
+  - Displays a simplified 2D representation of the local map using single characters.
+- `clean_polyverse`
+  - Removes all elements from the API map.
+- `write_local_map`
+  - Writes the **element_data** information to the local map. Requires **element_data**:
+    - **element_data**: Dictionary containing row, column, candidateID, type, and direction/color.
+- `delete_local_map`
+  - Deletes the **element_data** information from the local map. Requires **element_data**:
+    - **element_data**: Dictionary containing row, column, candidateID, and type.
+- `merge_map`
+  - Merges the local map into the external map (Local → External).
+- `local_map_payload`
+  - Creates the payload to write on the local map given the row, column, and **element_data**:
+    - **payload**: `{row, column, payload: {type, direction/color}}`
+- `duplicate_polyverse`
+  - Duplicates a map, optionally using an external URL. Defaults to the candidate's goal map if no URL is provided.
+
 
 ## Flask Routes
 
