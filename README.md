@@ -71,20 +71,20 @@ C---P-----P-----P-----P-------
 ------------------------------
 ```
 
-## Version Informaiton
+## Version Information
 
 **V1**
-- Simple one file with all the class, all the methods and the support functions.
+- Simple one file with all the class methods and support functions.
 
 **V2**
-- Separated the main function from the Polyverse Class
+- Separated the main function from the Polyverse class.
 
 **V3**
-- Added Flask to be able to serve the requests
+- Added Flask to handle API requests.
 
 **V4**
-- Dockerize the solution to be able to use it from anywhere.
-
+- Dockerized the solution for use in any environment.
+- 
 ## Methods
 
 **Private Methods**
