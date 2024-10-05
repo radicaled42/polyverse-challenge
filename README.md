@@ -97,16 +97,116 @@ C---P-----P-----P-----P-------
     - headers: this is a dictionary and can be empty
     - payload: this is a dictionary and can be empty
 - __write_element_polyverse
-  - Writes an element into the API map
+  - Writes an element into the API map, it requires **element_data**, **binary_api**
+    - element_data: All the arguments to create an element (row, column, candidateID, direction/color)
+    - binary_api: the number of the element to create
 - __clean_element_poliverse
+  - Deletes an element into the API map, it requires **element_data**, **binary_api**
+    - element_data: All the arguments to create an element (row, column, candidateID)
+    - binary_api: the number of the element to create
 - __verify_position
+  - Check if its possible to write an element on the designated position. It requires **element_data**
+  - element_data: All the arguments to create an element (row, column, candidateID, direction/color)
 
 **Public Methods**
 - get_polyverse_map
+  - It makes an API call to retrieve the map of the candidate.
 - show_local_polyverse
+  - It makes a representation of the map in 2D with single characters
 - clean_polyverse
+  - Remove all the elements from the API map
 - write_local_map
+  - Writes the element_data information in the local map. It requires **element_data**
+    - element_data: All the arguments to create an element (row, column, candidateID, type, direction/color)
 - delete_local_map
+  - Deletes the element_data information in the local map. It requires **element_data**
+  - element_data: All the arguments to delete an element (row, column, candidateID, type)
 - merge_map
+  - Merges local map into external map (Local --> External)
 - local_map_payload
+  - Given the row, column and element_data, this method will create the payload to write on the local map.
+  - payload: {row, column, payload: {type, direction/color}}
 - duplicate_polyverse
+  - It duplicates a map. It can take an external url or by default it will use the candidate goal map. The url is not a require argument
+
+## Flask Routes
+
+**/show**
+- Returns the actual candidate map
+  - method: GET
+
+**/clean**
+- Remove all the elements from the API map
+  - method: POST
+
+**/write**
+- Writes an element into the API map.
+  - method: POST
+  - arguments: start, end (optional), type, color/destination.
+    - start: the position to delete or the point to start a line.
+    - end: (optional) it the position where the lines end.
+    - type: its the type of element to create
+    - color/destination (optional) 
+
+Write single element
+```json
+{
+    "start": "(1,1)",
+    "payload": {
+        "type": 2,
+        "direction": "up"
+    }
+}
+```
+
+Write multiple elements
+```json
+{
+    "start": "(1,1)",
+    "end": "(5,1)",
+    "payload": {
+        "type": 2,
+        "direction": "up"
+    }
+}
+```
+
+**/delete**
+- Deletes an element into the API map.
+  - method: DELETE
+  - arguments: start, end (optional), type.
+    - start: the position to delete or the point to start a line.
+    - end: (optional) it the position where the lines end.
+    - type: its the type of element to delete
+
+Delete single element
+```json
+{
+    "start": "(1,1)",
+    "payload": {
+        "type": 2
+    }
+}
+```
+
+Delete multiple elements
+```json
+{
+    "start": "(1,1)",
+    "end": "(1, 3)",
+    "payload": {
+        "type": 2
+    }
+}
+```
+
+**/duplicate**
+- It duplicates a map
+  - method: POST
+  - arguments: url (optional)
+
+Duplicate URL Payload
+```json
+{
+    "url": "https://something.something.com"
+}
