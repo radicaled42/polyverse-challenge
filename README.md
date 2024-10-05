@@ -211,3 +211,28 @@ C---P-----P-----P-----P-------
 {
     "url": "https://something.something.com"
 }
+```
+
+## Dockerization
+
+To make the Polyverse solution easily deployable in any environment, I have Dockerized the application. 
+
+**Steps to Dockerize the Application:**
+
+1. Build the Docker Image:
+Use the following command to build the Docker image. 
+
+```bash
+docker build -t polyverse-app:<VERSION> .
+```
+
+2. Run the Docker Container with External Variables:
+When running the Docker container, you can pass the external environment variables POLYVERSE_URL and CANDIDATE_ID using the -e flag.
+
+```bash
+docker run -p 5000:5000 \
+-e POLYVERSE_URL="https://something.something.com/api" \
+-e CANDIDATE_ID="XXXXX-XXXX-XXXXX" \
+polyverse-app:v0.0.3
+
+```
