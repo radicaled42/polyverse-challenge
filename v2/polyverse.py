@@ -245,7 +245,7 @@ class Polyverse:
         return
     
     # Check if its possible to write an element on the designated position
-    def __verify_position(self, element_data, method):
+    def __verify_position(self, element_data):
 
         payload = element_data["payload"]
 
