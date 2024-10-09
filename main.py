@@ -1,4 +1,3 @@
-from polyverse.map_handler import Polyverse
 from flask import Flask, request, jsonify
 import os
 from utils import get_elements

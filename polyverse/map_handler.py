@@ -2,7 +2,7 @@
 import time
 import copy
 
-from utils import local_map_payload, verify_position
+from polyverse.utils import local_map_payload, verify_position
 
 class MapHandler:
     def __init__(self, api):
