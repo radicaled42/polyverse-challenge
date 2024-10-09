@@ -44,7 +44,7 @@ class PolyverseAPI:
         headers = {
             'Content-Type': 'application/json'
         }
-        return self.__api_call("POST", url, headers, payload)
+        return self.api_call("POST", url, headers, payload)
 
     # Delete an element from the external Polyverse
     def clean_element_poliverse(self, element_data, binary_api):
@@ -53,7 +53,7 @@ class PolyverseAPI:
         element_data.update({"candidateId": self.candidate_id})
         payload = element_data
         headers = {}
-        return self.__api_call("DELETE", url, headers, payload)
+        return self.api_call("DELETE", url, headers, payload)
 
     def translate_api(self, api_type):
         translate_api = {'0': 'polyanets', '1': 'soloons', '2': 'comeths'}
@@ -62,7 +62,7 @@ class PolyverseAPI:
     # Get the external Polyverse map
     def get_polyverse_map(self):
         url = f'{self.url}/map/{self.candidate_id}'
-        base_map = self.__api_call("GET", url, {}, {})
+        base_map = self.api_call("GET", url, {}, {})
         for row_index in range(0, len(base_map)):
             row_list = base_map[row_index]
             for col_index in range(0, len(row_list)):
